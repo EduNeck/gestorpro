@@ -1,0 +1,73 @@
+// Importar estilos de Vuetify
+@use 'vuetify/styles' with (
+  $color-pack: true
+);
+
+// Importar fuente de iconos MDI
+@import '@mdi/font/css/materialdesignicons.css';
+
+// Estilos globales personalizados
+html {
+  overflow-y: auto !important;
+  font-size: 14px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+}
+
+// Asegurar que los iconos se muestren correctamente
+.mdi {
+  font-family: 'Material Design Icons' !important;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  font-feature-settings: 'liga';
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+// Estilos para las cards del proyecto
+.proyecto-card {
+  transition: all 0.3s ease !important;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+  }
+}
+
+// Estilos para las tareas
+.tarea-card {
+  transition: all 0.2s ease !important;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1) !important;
+  }
+}
+
+// Mejoras para el layout
+.v-container {
+  max-width: 1200px;
+}
+
+// Responsividad mejorada
+@media (max-width: 600px) {
+  .v-container {
+    padding: 16px 12px;
+  }
+  
+  .proyecto-card,
+  .tarea-card {
+    margin-bottom: 16px !important;
+  }
+}
