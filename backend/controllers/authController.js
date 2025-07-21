@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const UsuarioModel = require('../db/models/usuarioModel');
+const pool = require('../config/db');
 
 const JWT_SECRET = process.env.JWT_SECRET;
 const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || '1d';
@@ -39,7 +40,6 @@ const AuthController = {
       let nombreRol = null;
       if (usuario.id_rol) {
         try {
-          const { pool } = require('../config/db');
           const rolResult = await pool.query('SELECT nombre FROM roles WHERE id = $1', [usuario.id_rol]);
           if (rolResult.rows.length > 0) {
             nombreRol = rolResult.rows[0].nombre;
