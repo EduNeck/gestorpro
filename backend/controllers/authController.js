@@ -35,8 +35,28 @@ const AuthController = {
       const coincide = await bcrypt.compare(contrasena, usuario.contrasena);
       if (!coincide) return res.status(401).json({ mensaje: 'Contraseña incorrecta' });
 
+      // Obtener información del rol
+      let nombreRol = null;
+      if (usuario.id_rol) {
+        try {
+          const { pool } = require('../config/db');
+          const rolResult = await pool.query('SELECT nombre FROM roles WHERE id = $1', [usuario.id_rol]);
+          if (rolResult.rows.length > 0) {
+            nombreRol = rolResult.rows[0].nombre;
+          }
+        } catch (rolError) {
+          console.warn('Error al obtener nombre del rol:', rolError);
+        }
+      }
+
       const token = jwt.sign(
-        { id: usuario.id, correo: usuario.correo, rol: usuario.id_rol },
+        { 
+          id: usuario.id, 
+          nombre: usuario.nombre,
+          correo: usuario.correo, 
+          id_rol: usuario.id_rol,
+          rol: nombreRol
+        },
         JWT_SECRET,
         { expiresIn: JWT_EXPIRES_IN }
       );

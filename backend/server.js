@@ -4,6 +4,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const authRoutes = require('./routes/authRoutes');
 const usuarioRoutes = require('./routes/usuarioRoutes');
+const rolRoutes = require('./routes/rolRoutes');
 const proyectoRoutes = require('./routes/proyectoRoutes');
 const tareaRoutes = require('./routes/tareaRoutes');
 
@@ -16,6 +17,7 @@ app.use(express.json());
 // Rutas
 app.use('/api/auth', authRoutes);
 app.use('/api/usuarios', usuarioRoutes);
+app.use('/api/roles', rolRoutes);
 app.use('/api/proyectos', proyectoRoutes);
 app.use('/api/tareas', tareaRoutes);
 
